@@ -1,0 +1,148 @@
+body{
+    height: 150vh;
+}
+
+#wrapper {
+    margin-top: 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#txtWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vw;
+    margin-bottom: 6vw;
+    text-align: center;
+}
+
+#txtEmoji{
+    font-size: calc(1.5rem + 3vw);
+}
+
+#txtTitle{
+    font-size: calc(1.4rem + 2vw);
+    color: #264770;
+    font-weight: 500;
+}
+
+#activitiesSuggestions{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 100%;
+    gap: 3vh;
+    border-radius: 3.5vw;
+}
+
+#forYou{
+    font-size: calc(0.6rem + 1vw);
+}
+
+.activitySuggestion{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 3vw;
+    align-items: center;
+    background-color: #d1cb963a;
+    padding: 4vw;
+    border: #ded5a7 0.3vw solid;
+    border-radius: 3.5vw;
+}
+
+.activityEmoji{
+    font-size: calc(1.5rem + 3vw);
+}
+
+.activityTexts{
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    width: 100%;
+}
+
+.activityTitle{
+    font-size: calc(0.6rem + 1vw);
+}
+
+.activityDesc{
+    font-size: calc(0.6rem + 0.7vw);
+}
+
+.activityDuration{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    width: 24vw;
+}
+
+.activityDuration p, .activityDuration span{
+    font-size: calc(0.6rem + 0.7vw);
+}
+
+#myActivities{
+    display: flex;
+    flex-direction: column;
+    margin: 6vw 0 15vh;
+    width: 80vw;
+    gap: 4vw;
+}
+
+#myActivitiesTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#myActivitiesText{
+    font-size: calc(0.6rem + 0.7vw);
+}
+
+#myActivitiesAdd{
+    display: flex;
+    align-items: center;
+    background-color: #a7dca5;
+    padding: 2vw;
+    border-radius: 4vw;
+    border: none;
+    gap: 1vw;
+    text-decoration: none;
+}
+
+#myActivitiesAdd p, #myActivities span{
+    font-size: calc(0.6rem + 0.7vw);
+    color: black;
+}
+
+#noActivities{
+    background-color: white;
+    padding: 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+    border-radius: 5vw;
+    border: 1px #bfcbd9 dashed;
+}
+
+#noActivitiesEmoji{
+    font-size: calc(1.5rem + 3vw);
+}
+
+#noActivitiesText{
+    text-align: center;
+    font-size: calc(0.6rem + 0.7vw);
+}
+
+#noActivities a{
+    text-decoration: none;
+    background-color: #ffd97d;
+    color: black;
+    padding: 2vw 4vw;
+    border-radius: 4vw;
+    font-size: calc(0.6rem + 0.7vw);
+}
