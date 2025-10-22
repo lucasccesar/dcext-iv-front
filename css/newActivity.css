@@ -1,0 +1,77 @@
+#wrapper {
+    margin-top: 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#txtWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vw;
+    margin-bottom: 6vw;
+    text-align: center;
+}
+
+#txtEmoji{
+    font-size: calc(1.5rem + 3vw);
+}
+
+#txtTitle{
+    font-size: calc(1.4rem + 2vw);
+    color: #264770;
+    font-weight: 500;
+}
+
+#newActivityForm{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    padding: 6vw;
+    border-radius: 5vw;
+    border: #F0F2F6 0.8vw solid;
+    gap: 4vw;
+}
+
+.activityDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+#activityName{
+    padding: 3vw;
+    border-radius: 3vw;
+    border: 1px solid #C3CEDB;
+}
+
+fieldset{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+legend{
+    margin-bottom: 1vw;
+}
+
+#time{
+    padding: 2vw;
+    border-radius: 3vw;
+    border: 1px solid #C3CEDB;
+    width: 100%;
+}
+
+#inputSubmit{
+    padding: 3vw;
+    background-color: #a7dca5;
+    border-radius: 3vw;
+    border: none;
+}
+
+.activityDiv label, legend, fieldset label{
+    font-size: calc(0.6rem + 0.7vw);
+}
