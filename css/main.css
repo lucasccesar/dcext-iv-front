@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+  color: #264770;
+}
+
+body{
+    background: #A3CEF1;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+#sidebarButton{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50%, 6vw);
+    background-color: #00000000;
+    border: none;
+}
+
+#sidebarButton span{
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 500,
+        'GRAD' 0,
+        'opsz' 48;
+    font-size: 10vw;
+}
+
+#sidebar{
+    width: 60vw;
+    background-color: white;
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    z-index: 3;
+    transition: 600ms;
+}
+
+.sidebarOpened{
+    left: 0;
+}
+
+.sidebarClosed{
+    left: -60vw;
+}
+
+
+#sidebar button{
+    background-color: white;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-25%, 25%);
+    color: #264770;
+}
+
+#sidebar button span{
+    font-size: 40px;
+}
+
+#sidebarLinks{
+    position: relative;
+    transform: translate(25%, 25%);
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+}
+
+.sidebarLink{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 2vw;
+    padding: 2vw;
+    border-radius: 3vw;
+}
+
+.sidebarLink p, .sidebarLink span{
+    color: #264770;
+}
+
+.sidebarLinkSelected{
+    background-color: #2C5282;
+}
+
+.sidebarLinkSelected p, .sidebarLinkSelected span{
+    color: white;
+}
+
+
+
+#sidebarBackground{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.644);
+    position: absolute;
+    z-index: 2;
+}
+
+#wrapper {
+    margin-top: 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#txtWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vw;
+    margin-bottom: 6vw;
+    text-align: center;
+}
+
+#txtEmoji{
+    font-size: calc(1.5rem + 3vw);
+}
+
+#txtTitle{
+    font-size: calc(1.4rem + 2vw);
+    color: #264770;
+    font-weight: 500;
+}
+
+#emotionsDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    width: 80vw;
+    border: #F0F2F6 0.8vw solid;
+    height: 100%;
+    gap: 3vh;
+    padding: 6vw;
+    border-radius: 3.5vw;
+}
+
+#emotionsDiv a{
+    color: black;
+    text-decoration: none;
+}
+
+.emotion{
+    width: 100%;
+    padding: 3vw 4vw;
+    border-radius: 2.5vw;
+    border: #D8E0E8 1px solid;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+    transition: 300ms;
+}
+
+.emotionEmoji{
+    font-size: calc(1rem + 5vw);
+}
+
+.emotionText{
+    font-size: calc(1rem + 1vw);
+}
+
+.sadSelected{
+    background-color: #DBEAFE;
+    border-color: #95ADCC;
+}
+
+.neutralSelected{
+    background-color: #F3F4F6;
+    border-color: #A4B3C7;
+}
+
+.happySelected{
+    background-color: #FEF9C2;
+    border-color: #AAB6A8;
+}
+
+.inLoveSelected{
+    background-color: #FCE7F3;
+    border-color: #A9ABC6;
+}
+
+.tiredSelected{
+    background-color: #F3E8FF;
+    border-color: #A4ACCD;
+}
+
+#selectedEmotion{
+    height: fit-content;
+    width: 80vw;
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6vw 0 28vw;
+    background-color: #d1cb966b;
+    border: 3px #CAD1BE solid;
+    border-radius: 3vw;
+    padding: 5vw;
+    gap: 3vw;
+}
+
+#selectedEmoji{
+    font-size: calc(1rem + 2vw);
+}
+
+#selectedText{
+    font-size: calc(0.8rem + 0.8vw);
+    text-align: center;
+}
+
+#selectedButton{
+    width: 100%;
+    background-color: #F8D987;
+    border: none;
+    padding: 3vw;
+    border-radius: 3vw;
+}
+
+footer{
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1;
+    padding: 2vh 0;
+    gap: 2vh;
+}
+
+.footerDiv{
+    width: 100%;
+    display: flex;
+    padding: 0 2vw;
+    gap: 2vw;
+}
+
+.footerButton{
+    background-color: white;
+    border: none;
+    padding: 1vw 5vw;
+    border-radius: 3vw;
+    width: 100%;
+}
+
+.footerButton p{
+    color: #264770;
+}
+
+.footerButtonSelected{
+    background-color: #2C5282;
+    color: white;
+}
+
+.footerButtonSelected p, .footerButtonSelected span{
+    background-color: #2C5282;
+    color: white;
+}
