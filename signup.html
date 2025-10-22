@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/signup.css" />
     <title>Login</title>
 </head>
 <body>
     <div id="wrapper">
         <div id="txtWrapper">
-            <p id="txtEmoji">😊</p>
+            <p id="txtEmoji">🌟</p>
             <p id="txtTitle">Diário de Emoções</p>
-            <p id="txtDesc">Que bom te ver de novo!</p>
+            <p id="txtDesc">Vamos começar juntos!</p>
         </div>
         <form action="">
-            <p id="formTitle">Entrar</p>
+            <p id="formTitle">Crie sua conta</p>
+
+            <div class="inputDiv">
+                <label for="name">Nome Completo</label>
+                <input type="text" placeholder="Digite seu nome completo">
+            </div>
 
             <div class="inputDiv">
                 <label for="email">Email</label>
@@ -23,12 +28,12 @@
 
             <div class="inputDiv">
                 <label for="email">Senha</label>
-                <input type="text" placeholder="Digite sua senha">
+                <input type="text" placeholder="Crie sua senha">
             </div>
 
             <button type="submit">Entrar</button>
 
-            <a href="./signup.html">Ainda não tem conta? Cadastre-se</a>
+            <a href="./login.html">Já tem conta? Entrar</a>
         </form>
     </div>
 </body>
