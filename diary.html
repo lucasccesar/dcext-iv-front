@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/diary.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Login</title>
 </head>
@@ -16,11 +16,11 @@
             <span class="material-symbols-outlined">close</span>
         </button>
         <div id="sidebarLinks">
-            <a href="#" class="sidebarLink sidebarLinkSelected">
+            <a href="./main.html" class="sidebarLink">
                 <span class="material-symbols-outlined">home</span>
                 <p>Início</p>
             </a>
-            <a href="./diary.html" class="sidebarLink">
+            <a href="#" class="sidebarLink sidebarLinkSelected">
                 <span class="material-symbols-outlined">import_contacts</span>
                 <p>Diário</p>
             </a>
@@ -53,45 +53,31 @@
     <div id="sidebarBackground" style="display: none;"></div>
     <div id="wrapper">
         <div id="txtWrapper">
-            <p id="txtEmoji">💝</p>
-            <p id="txtTitle">Como você está hoje?</p>
+            <p id="txtEmoji">📖</p>
+            <p id="txtTitle">Meu Diário</p>
         </div>
-        <div id="emotionsDiv">
-            <a id="sad" class="emotion sadSelected" href="#selectedEmotion">
-                <p class="emotionEmoji">😢</p>
-                <p class="emotionText">Triste</p>
-            </a>
-            <a id="neutral" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😐</p>
-                <p class="emotionText">Neutro</p>
-            </a>
-            <a id="happy" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😀</p>
-                <p class="emotionText">Feliz</p>
-            </a>
-            <a id="inLove" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😍</p>
-                <p class="emotionText">Apaixonado</p>
-            </a>
-            <a id="tired" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😴</p>
-                <p class="emotionText">Cansado</p>
-            </a>
-        </div>
-        <div id="selectedEmotion">
-            <p id="selectedEmoji">❓</p>
-            <p id="selectedText">Selecione como você está hoje</p>
-            <a id="selectedButton" href="./diary.html">Quer contar mais? ✏️</a>
-        </div>
+        <form id="diaryForm">
+            <textarea placeholder="Escreva aqui como foi seu dia, seus pensamentos e sentimentos..." id="diaryInput" ></textarea>
+            <div id="diaryButtons">
+                <button id="recordDiary" class="diaryButton">
+                    <span class="material-symbols-outlined">mic</span>
+                    <p>Gravar áudio</p>
+                </button>
+                <button id="saveDiary" class="diaryButton">
+                    <span class="material-symbols-outlined">save</span>
+                    <p>Salvar</p>
+                </button>
+            </div>
+        </form>
     </div>
 
     <footer>
         <div id="upperFooter" class="footerDiv">
-            <a class="footerButton footerButtonSelected" href="#">
+            <a class="footerButton" href="./main.html">
                 <span class="material-symbols-outlined">home</span>
                 <p>Início</p>
             </a>
-            <a class="footerButton" href="./diary.html">
+            <a class="footerButton footerButtonSelected" href="#">
                 <span class="material-symbols-outlined">import_contacts</span>
                 <p>Diário</p>
             </a>
