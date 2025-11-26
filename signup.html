@@ -13,28 +13,37 @@
             <p id="txtTitle">Diário de Emoções</p>
             <p id="txtDesc">Vamos começar juntos!</p>
         </div>
-        <form action="./main.html">
+        <form action="./main.html" id="formInput">
             <p id="formTitle">Crie sua conta</p>
 
             <div class="inputDiv">
                 <label for="name">Nome Completo</label>
-                <input type="text" placeholder="Digite seu nome completo">
+                <input type="text" placeholder="Digite seu nome completo" id="nameInput">
             </div>
 
             <div class="inputDiv">
                 <label for="email">Email</label>
-                <input type="text" placeholder="Digite seu email">
+                <input type="email" placeholder="Digite seu email" id="emailInput">
             </div>
 
             <div class="inputDiv">
-                <label for="email">Senha</label>
-                <input type="text" placeholder="Crie sua senha">
+                <label for="password" >Senha</label>
+                <input type="password" placeholder="Crie sua senha" id="passwordInput" minlength="6">
             </div>
 
-            <button type="submit">Entrar</button>
+            <div class="inputDiv">
+                <label>Tipo de Conta</label>
+                <select id="typeInput">
+                    <option value="idoso">Idoso</option>
+                    <option value="familiar">Familiar</option>
+                </select>
+            </div>
+
+            <button type="submit">Criar Conta</button>
 
             <a href="./login.html">Já tem conta? Entrar</a>
         </form>
     </div>
 </body>
+<script src="./js/signup.js" type="module"></script>
 </html>
