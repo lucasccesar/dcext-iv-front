@@ -1,46 +1,39 @@
-const closeSidebar = document.querySelector("#sidebar button")
-const sidebar = document.querySelector('#sidebar')
-const sidebarBackground = document.querySelector('#sidebarBackground')
-const openSidebar = document.querySelector('#sidebarButton')
-const root = document.querySelector(':root');
-const emotionsButtons = document.querySelectorAll('.emotion')
-const selectedEmotion = document.getElementById('selectedEmotion')
+const emotions = document.querySelectorAll(".emotion");
+const selectedEmoji = document.getElementById("selectedEmoji");
+const selectedText = document.getElementById("selectedText");
+const selectedButton = document.getElementById("selectedButton");
 
-closeSidebar.addEventListener('click', ()=>{
-    sidebar.classList.replace('sidebarOpened', 'sidebarClosed')
-    sidebarBackground.style.display = "none"
-    root.style.overflowY = 'scroll'
+let currentEmotion = null;
+
+emotions.forEach(emotion => {
+    emotion.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Remove seleção anterior
+        emotions.forEach(em => em.classList.remove("sadSelected", "neutralSelected", "happySelected", "inLoveSelected", "tiredSelected"));
+
+        // Marca a nova seleção
+        emotion.classList.add(`${emotion.id}Selected`);
+
+        // Atualiza o display da emoção selecionada
+        const emoji = emotion.querySelector(".emotionEmoji").textContent;
+        const text = emotion.querySelector(".emotionText").textContent;
+
+        selectedEmoji.textContent = emoji;
+        selectedText.textContent = text;
+
+        currentEmotion = text; // armazenar emoção em português
+    });
 });
 
-openSidebar.addEventListener('click', ()=>{
-    sidebar.classList.replace('sidebarClosed', 'sidebarOpened')
-    sidebarBackground.style.display = "block"
-    root.style.overflowY = 'hidden'
-})
-
-sidebarBackground.addEventListener('click', ()=>{
-    sidebar.classList.replace('sidebarOpened', 'sidebarClosed')
-    sidebarBackground.style.display = "none"
-    root.style.overflowY = 'scroll'
-});
-
-emotionsButtons.forEach((e)=>{
-    e.addEventListener('click', changeSelectedEmotion)
-})
-
-function changeSelectedEmotion(){
-    let emotionTarget;
-    if(event.target.nodeName == "A"){
-        emotionTarget = event.target;
-    }else{
-        emotionTarget = event.target.parentElement;
+// Configura o botão para abrir a página com a emoção selecionada
+selectedButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!currentEmotion) {
+        alert("Selecione uma emoção antes de continuar!");
+        return;
     }
-    emotionsButtons.forEach((e)=>{
-        if(e.classList.length > 1){
-            e.classList.remove(e.id + "Selected")
-        }
-    })
-    emotionTarget.classList.add(emotionTarget.id + "Selected")
-    selectedEmotion.children[0].innerText = emotionTarget.children[0].innerText;
-    selectedEmotion.children[1].innerHTML = `Você está se sentindo <b>${emotionTarget.children[1].innerText}</b> hoje`;
-}
+
+    const url = `./diary.html?emocao=${encodeURIComponent(currentEmotion)}`;
+    window.location.href = url;
+});

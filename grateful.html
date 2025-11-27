@@ -52,30 +52,33 @@
         </div>
     </div>
     <div id="sidebarBackground" style="display: none;"></div>
-    <div id="wrapper">
-        <div id="txtWrapper">
-            <p id="txtEmoji">🌸</p>
-            <p id="txtTitle">Espaço da Gratidão</p>
-            <p id="txtDesc">Um momento para agradecer</p>
+    <main>
+        <div id="wrapper">
+            <div id="txtWrapper">
+                <p id="txtEmoji">🌸</p>
+                <p id="txtTitle">Espaço da Gratidão</p>
+                <p id="txtDesc">Um momento para agradecer</p>
+            </div>
+            <form id="gratefulForm">
+                <div id="formTitle">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <p>Hoje eu sou grato por...</p>
+                </div>
+                <textarea placeholder="Escreva aqui pelo que você é grato hoje. Pode ser algo simples como um sorriso, uma refeição gostosa ou a companhia da família..." id="gratefulInput" ></textarea>
+                <div id="gratefulButtons">
+                    <button id="recordgrateful" class="gratefulButton">
+                        <span class="material-symbols-outlined">mic</span>
+                        <p>Gravar áudio</p>
+                    </button>
+                    <button id="savegrateful" class="gratefulButton">
+                        <span class="material-symbols-outlined">save</span>
+                        <p>Salvar</p>
+                    </button>
+                </div>
+            </form>
         </div>
-        <form id="gratefulForm">
-            <div id="formTitle">
-                <span class="material-symbols-outlined">favorite</span>
-                <p>Hoje eu sou grato por...</p>
-            </div>
-            <textarea placeholder="Escreva aqui pelo que você é grato hoje. Pode ser algo simples como um sorriso, uma refeição gostosa ou a companhia da família..." id="gratefulInput" ></textarea>
-            <div id="gratefulButtons">
-                <button id="recordgrateful" class="gratefulButton">
-                    <span class="material-symbols-outlined">mic</span>
-                    <p>Gravar áudio</p>
-                </button>
-                <button id="savegrateful" class="gratefulButton">
-                    <span class="material-symbols-outlined">save</span>
-                    <p>Salvar</p>
-                </button>
-            </div>
-        </form>
-    </div>
+        <div id="userGratefuls"></div>
+    </main>
 
     <footer>
         <div id="upperFooter" class="footerDiv">
@@ -98,5 +101,6 @@
         </div>
     </footer>
 </body>
-<script src="./js/main.js" type="module"></script>
+<script src="./js/global.js" type="module"></script>
+<script src="./js/grateful.js" type="module"></script>
 </html>

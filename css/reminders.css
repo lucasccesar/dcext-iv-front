@@ -59,6 +59,7 @@
     width: 100%;
     align-items: center;
     gap: 1vw;
+    justify-content: space-between;
 }
 
 .reminderDesc span{
@@ -67,13 +68,18 @@
 }
 
 .reminderDesc p{
-    width: 100%;
+    width: fit-content;
     font-size: calc(0.6rem + 0.7vw);
+}
+
+.reminderDescDiv{
+    display: flex;
+    flex-direction: row;
 }
 
 .activityDuration{
     display: flex;
-    width: 20vw;
+    width: fit-content;
     align-items: center;
     gap: 1vw;
 }

@@ -85,3 +85,23 @@
     border: none;
     background-color: #a7dca5;
 }
+
+#userGratefuls{
+    margin-top: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 6vw;
+    align-items: center;
+    margin-bottom: 14vh;
+}
+
+.gratefulItem{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 80vw;
+    border: #F0F2F6 0.8vw solid;
+    gap: 1vh;
+    padding: 4vw;
+    border-radius: 3.5vw;
+}

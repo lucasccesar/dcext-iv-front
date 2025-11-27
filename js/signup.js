@@ -1,57 +1,61 @@
-const form = document.getElementById("formInput")
-const nameInput = document.getElementById("nameInput")
-const emailInput = document.getElementById("emailInput")
-const passwordInput = document.getElementById("passwordInput")
-const typeInput = document.getElementById("typeInput")
+const form = document.getElementById("formInput");
+const nameInput = document.getElementById("nameInput");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
+const typeInput = document.getElementById("typeInput");
 
-form.addEventListener("submit", async e => {
-    e.preventDefault()
+const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+if (usuarioLogado) {
+    window.location.href = "./main.html";
+}
 
-    const nome = nameInput.value.trim()
-    const email = emailInput.value.trim()
-    const senha = passwordInput.value.trim()
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nome = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const senha = passwordInput.value.trim();
+    const tipo = typeInput.value;
 
     if (!nome || !email || !senha) {
-        alert("Preencha todos os campos.")
-        return
+        alert("Preencha todos os campos!");
+        return;
     }
 
-    // Limite de caracteres para bcrypt
-    if (senha.length > 72) {
-        alert("A senha deve ter no máximo 72 caracteres.")
-        return
+    /* INÍCIO DO CÓDIGO TEMPORÁRIO - simulação de cadastro com localStorage */
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    if (usuarios.some(u => u.email === email)) {
+        alert("Email já cadastrado!");
+        return;
     }
 
-    const data = {
-        nome: nome,
-        email: email,
-        senha: senha,
-        tipo: typeInput.value
-    }
+    const novoId = usuarios.length ? usuarios[usuarios.length - 1].id_usuario + 1 : 1;
+    const novoUsuario = {
+        id_usuario: novoId,
+        nome,
+        email,
+        senha,
+        tipo,
+        data_criacao: new Date().toISOString()
+    };
 
-    if (!data.nome || !data.email || !data.senha) {
-        alert("Preencha todos os campos.")
-        return
-    }
+    usuarios.push(novoUsuario);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    console.log(data)
+    localStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
+    /* FIM DO CÓDIGO TEMPORÁRIO */
 
-    try {
-        const response = await fetch("http://127.0.0.1:8000/usuarios/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        })
+    /*
+    const response = await fetch("http://localhost:8000/usuarios/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, senha, tipo })
+    });
+    const data = await response.json();
+    console.log("Usuário criado:", data);
+    */
 
-        if (!response.ok) {
-            const err = await response.json().catch(() => null)
-            alert(err?.detail || "Erro ao criar conta.")
-            return
-        }
-
-        alert("Conta criada com sucesso!")
-        window.location.href = "./login.html"
-    } catch {
-        alert("Erro ao conectar ao servidor.")
-    }
-})
+    alert("Conta criada com sucesso!");
+    window.location.href = "./main.html";
+});
