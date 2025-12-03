@@ -3,20 +3,22 @@ const mostMoodSpan = document.getElementById('mostMood');
 const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
 const emotionCtx = document.getElementById('emotionChart').getContext('2d');
 
-/* ===== INÍCIO DO CÓDIGO TEMPORÁRIO ===== */
-let diarios = JSON.parse(localStorage.getItem('diarios')) || [];
-diarios = diarios.filter((d) => d.id_usuario === usuarioLogado.id_usuario);
-/* ===== FIM DO CÓDIGO TEMPORÁRIO ===== */
+// Inicializando a lista de diários vazia
+let diarios = [];
 
-/* ===== CÓDIGO PARA CONSUMO DA API (comentado) =====
-fetch("http://localhost:8000/diarios/user/" + usuarioLogado.id_usuario)
-    .then(res => res.json())
-    .then(data => {
-        diarios = data;
+// Função para carregar os diários do usuário a partir da API
+async function loadUserDiaries() {
+    try {
+        const res = await fetch(`http://localhost:8000/diarios/usuario/${usuarioLogado.id_usuario}`);
+        if (!res.ok) throw new Error("Erro ao buscar diários");
+
+        // Preenchendo a variável 'diarios' com os dados da API
+        diarios = await res.json();
         renderHumor();
-    })
-    .catch(() => {})
-===== FIM CÓDIGO API ===== */
+    } catch (err) {
+        console.error("Erro ao carregar diários:", err);
+    }
+}
 
 function renderHumor() {
     if (diarios.length === 0) {
@@ -96,4 +98,5 @@ function renderHumor() {
     });
 }
 
-renderHumor();
+// Carregar os diários ao inicializar
+loadUserDiaries();
