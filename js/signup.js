@@ -4,6 +4,7 @@ const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
 const typeInput = document.getElementById("typeInput");
 
+// Se já está logado, redireciona
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 if (usuarioLogado) {
     window.location.href = "./main.html";
@@ -17,45 +18,37 @@ form.addEventListener("submit", async (e) => {
     const senha = passwordInput.value.trim();
     const tipo = typeInput.value;
 
-    if (!nome || !email || !senha) {
+    if (!nome || !email || !senha || !tipo) {
         alert("Preencha todos os campos!");
         return;
     }
 
-    /* INÍCIO DO CÓDIGO TEMPORÁRIO - simulação de cadastro com localStorage */
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    try {
+        // 🔹 Chamada real para a API FastAPI
+        const response = await fetch("http://localhost:8000/usuarios/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, email, senha, tipo })
+        });
 
-    if (usuarios.some(u => u.email === email)) {
-        alert("Email já cadastrado!");
-        return;
+        // Se a API retornar erro
+        if (!response.ok) {
+            const erro = await response.json();
+            alert(erro.detail || "Erro ao criar conta!");
+            return;
+        }
+
+        // Sucesso → retorna o usuário criado
+        const usuario = await response.json();
+
+        // Gravar sessão local
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
+        alert("Conta criada com sucesso!");
+        window.location.href = "./main.html";
+
+    } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao conectar com o servidor!");
     }
-
-    const novoId = usuarios.length ? usuarios[usuarios.length - 1].id_usuario + 1 : 1;
-    const novoUsuario = {
-        id_usuario: novoId,
-        nome,
-        email,
-        senha,
-        tipo,
-        data_criacao: new Date().toISOString()
-    };
-
-    usuarios.push(novoUsuario);
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-    localStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
-    /* FIM DO CÓDIGO TEMPORÁRIO */
-
-    /*
-    const response = await fetch("http://localhost:8000/usuarios/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha, tipo })
-    });
-    const data = await response.json();
-    console.log("Usuário criado:", data);
-    */
-
-    alert("Conta criada com sucesso!");
-    window.location.href = "./main.html";
 });

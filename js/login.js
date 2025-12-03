@@ -2,12 +2,13 @@ const form = document.querySelector("form");
 const emailInput = form.querySelectorAll("input")[0];
 const passwordInput = form.querySelectorAll("input")[1];
 
+// Se já está logado, redireciona
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 if (usuarioLogado) {
     window.location.href = "./main.html";
 }
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = emailInput.value.trim();
@@ -18,32 +19,32 @@ form.addEventListener("submit", (e) => {
         return;
     }
 
-    /* INÍCIO DO CÓDIGO TEMPORÁRIO - simulação de login com localStorage */
-    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    try {
+        // Chamada ao endpoint de login
+        const response = await fetch("http://localhost:8000/usuarios/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, senha })
+        });
 
-    const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+        // Se a API responder erro (401, 404 etc)
+        if (!response.ok) {
+            const erro = await response.json().catch(() => null);
+            alert(erro?.detail || "Email ou senha incorretos!");
+            return;
+        }
 
-    if (!usuario) {
-        alert("Email ou senha incorretos!");
-        return;
-    }
+        // Usuário autenticado
+        const usuario = await response.json();
 
-    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-    /* FIM DO CÓDIGO TEMPORÁRIO */
+        // Salvar sessão
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
-    /*
-    fetch("http://localhost:8000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, senha })
-    })
-    .then(res => res.json())
-    .then(data => {
-        localStorage.setItem("usuarioLogado", JSON.stringify(data));
+        // Redirecionar
         window.location.href = "./main.html";
-    })
-    .catch(err => alert("Erro ao logar: " + err));
-    */
 
-    window.location.href = "./main.html";
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao conectar com o servidor!");
+    }
 });

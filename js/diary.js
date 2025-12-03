@@ -1,61 +1,70 @@
 const diaryForm = document.getElementById("diaryForm");
 const diaryInput = document.getElementById("diaryInput");
 const saveDiaryButton = document.getElementById("saveDiary");
-const recordDiaryButton = document.getElementById("recordDiary");
-const recordDiaryButtonText = recordDiaryButton.querySelector("p");
 const userDiariesContainer = document.getElementById("userDiaries");
 const emotionSelect = document.getElementById("emotionSelect");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-/* ===== INÍCIO DO CÓDIGO TEMPORÁRIO ===== */
-let diarios = JSON.parse(localStorage.getItem("diarios")) || [];
+const API_URL = "http://localhost:8000";
 
 const urlParams = new URLSearchParams(window.location.search);
 const urlEmotion = urlParams.get("emocao");
 if (urlEmotion) emotionSelect.value = urlEmotion;
 
-function renderUserDiaries() {
-    userDiariesContainer.innerHTML = "";
-    const p = document.createElement("p");
-    p.innerText = "Meus Diários"
-    userDiariesContainer.appendChild(p)
+async function loadUserDiaries() {
+    try {
+        const res = await fetch(`${API_URL}/diarios/usuario/${usuarioLogado.id_usuario}`);
+        if (!res.ok) throw new Error("Erro ao buscar diários");
 
-    const diariosUsuario = diarios
-        .filter(d => d.id_usuario === usuarioLogado.id_usuario)
-        .sort((a, b) => new Date(b.data_registro) - new Date(a.data_registro));
+        const diarios = await res.json();
 
-    if (diariosUsuario.length === 0) {
+        renderUserDiaries(diarios);
+
+        const hoje = new Date().toISOString().split("T")[0];
+        const diariosHoje = diarios.filter(d => d.data_registro.startsWith(hoje));
+
+        if (diariosHoje.length > 0) {
+            diaryInput.value = diariosHoje[0].texto;
+            if (diariosHoje[0].emocao) emotionSelect.value = diariosHoje[0].emocao;
+        }
+
+    } catch (err) {
+        console.error("Erro ao carregar diários:", err);
+    }
+}
+
+function renderUserDiaries(diarios) {
+    userDiariesContainer.innerHTML = "<p>Meus Diários</p>";
+
+    if (!diarios.length) {
         userDiariesContainer.innerHTML = "<p>Você ainda não registrou nenhum diário.</p>";
         return;
     }
 
-    diariosUsuario.forEach(d => {
-        const div = document.createElement("div");
-        div.className = "diaryLog";
-        div.innerHTML = `
-            <p class="diaryDate">${new Date(d.data_registro).toLocaleString()}</p>
-            <p class="diaryText">${d.texto}</p>
-            <p class="diaryEmotion">Emoção: ${d.emocao || "Não registrada"}</p>
-        `;
-        userDiariesContainer.appendChild(div);
-    });
+    console.log(diarios)
+
+    diarios
+        .sort((a, b) => new Date(b.data_registro) - new Date(a.data_registro))
+        .forEach(d => {
+            const dataBanco = new Date(d.data_registro);
+            dataBanco.setHours(dataBanco.getHours() + 3);
+
+            const localDateString = dataBanco.toLocaleString();
+
+            const div = document.createElement("div");
+            div.className = "diaryLog";
+            div.innerHTML = `
+                <p class="diaryDate">${localDateString}</p>
+                <p class="diaryText">${d.texto}</p>
+                <p class="diaryEmotion">Emoção: ${d.emocao || "Não registrada"}</p>
+            `;
+            userDiariesContainer.appendChild(div);
+        });
 }
 
-const hoje = new Date().toISOString().split("T")[0];
-const diariosHoje = diarios
-    .filter(d => d.id_usuario === usuarioLogado.id_usuario && d.data_registro.startsWith(hoje))
-    .sort((a, b) => new Date(b.data_registro) - new Date(a.data_registro));
-
-if (diariosHoje.length > 0) {
-    diaryInput.value = diariosHoje[0].texto;
-    if (diariosHoje[0].emocao) emotionSelect.value = diariosHoje[0].emocao;
-}
-
-renderUserDiaries();
-
-saveDiaryButton.addEventListener("click", (e) => {
+saveDiaryButton.addEventListener("click", async (e) => {
     e.preventDefault();
+
     const texto = diaryInput.value.trim();
     const emocao = emotionSelect.value;
 
@@ -64,32 +73,41 @@ saveDiaryButton.addEventListener("click", (e) => {
         return;
     }
 
-    const novoId = diarios.length ? diarios[diarios.length - 1].id_diario + 1 : 1;
-    const novoDiario = {
-        id_diario: novoId,
+    const dataLocal = new Date();
+
+    dataLocal.setHours(dataLocal.getHours() - 3);
+
+    const dataComAjuste = dataLocal.toISOString();
+
+    const payload = {
         id_usuario: usuarioLogado.id_usuario,
         texto,
         emocao,
-        data_registro: new Date().toISOString()
+        data_registro: dataComAjuste
     };
 
-    diarios.push(novoDiario);
-    localStorage.setItem("diarios", JSON.stringify(diarios));
+    console.log(payload);
 
-    diaryInput.value = "";
-    emotionSelect.value = "";
-    renderUserDiaries();
-    alert("Diário salvo com sucesso!");
+    try {
+        const res = await fetch(`${API_URL}/diarios/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error("Erro ao salvar diário");
+
+        diaryInput.value = "";
+        emotionSelect.value = "";
+
+        loadUserDiaries();
+
+        alert("Diário salvo com sucesso!");
+
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao salvar diário.");
+    }
 });
-/* ===== FIM DO CÓDIGO TEMPORÁRIO ===== */
 
-/* ===== CÓDIGO PARA CONSUMO DA API (comentado) =====
-fetch("http://localhost:8000/diarios/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id_usuario: usuarioLogado.id_usuario, texto, emocao })
-})
-.then(res => res.json())
-.then(data => console.log("Diário salvo:", data))
-.catch(err => alert("Erro ao salvar diário: " + err));
-*/
+loadUserDiaries();

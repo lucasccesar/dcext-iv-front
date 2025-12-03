@@ -34,6 +34,6 @@ selectedButton.addEventListener("click", (e) => {
         return;
     }
 
-    const url = `./diary.html?emocao=${encodeURIComponent(currentEmotion)}`;
+    const url = `./diary.html?emocao=${encodeURIComponent(currentEmotion).toLowerCase()}`;
     window.location.href = url;
 });
