@@ -25,15 +25,16 @@
     font-weight: 500;
 }
 
-#newActivityForm{
+#newActivityForm {
     background-color: white;
     display: flex;
     flex-direction: column;
     width: 80vw;
     padding: 6vw;
     border-radius: 5vw;
-    border: #F0F2F6 0.8vw solid;
+    border: 2px solid #e5e7eb;
     gap: 4vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .activityDiv{
@@ -42,10 +43,26 @@
     gap: 2vw;
 }
 
-#activityName{
+#activityName {
     padding: 3vw;
     border-radius: 3vw;
-    border: 1px solid #C3CEDB;
+    border: 2px solid #e5e7eb;
+    background-color: #ffffff;
+    font-size: calc(0.9rem + 0.8vw);
+    color: #1f2937;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    outline: none;
+}
+
+#activityName:focus {
+    border-color: #2C5282;
+    box-shadow: 0 0 0 4px rgba(44, 82, 130, 0.1);
+    background-color: #ffffff;
+}
+
+#activityName:hover {
+    border-color: #d1d5db;
 }
 
 fieldset{
@@ -59,18 +76,51 @@ legend{
     margin-bottom: 1vw;
 }
 
-#time{
+#time {
     padding: 2vw;
     border-radius: 3vw;
-    border: 1px solid #C3CEDB;
+    border: 2px solid #e5e7eb;
     width: 100%;
+    background-color: #ffffff;
+    font-size: calc(0.9rem + 0.8vw);
+    color: #1f2937;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    outline: none;
 }
 
-#inputSubmit{
-    padding: 3vw;
-    background-color: #a7dca5;
-    border-radius: 3vw;
+#time:focus {
+    border-color: #2C5282;
+    box-shadow: 0 0 0 4px rgba(44, 82, 130, 0.1);
+    background-color: #ffffff;
+}
+
+#time:hover {
+    border-color: #d1d5db;
+}
+
+#inputSubmit {
+    padding: 3.5vw;
+    background: linear-gradient(135deg, #a7dca5 0%, #86efac 100%);
+    border-radius: 3.5vw;
     border: none;
+    color: #1f2937;
+    font-weight: 600;
+    font-size: calc(0.9rem + 0.8vw);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    cursor: pointer;
+}
+
+#inputSubmit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+}
+
+#inputSubmit:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
 }
 
 .activityDiv label, legend, fieldset label{

@@ -24,17 +24,18 @@
     font-weight: 500;
 }
 
-#diaryForm{
+#diaryForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: white;
     width: 80vw;
-    border: #F0F2F6 0.8vw solid;
+    border: 2px solid #e5e7eb;
     height: 100%;
     gap: 3vh;
     padding: 6vw;
-    border-radius: 3.5vw;
+    border-radius: 4vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 #emotionSelectWrapper{
@@ -49,12 +50,29 @@
     width: 60%;
 }
 
-#diaryInput{
+#diaryInput {
     width: 100%;
     height: 20vh;
     padding: 3vw;
     border-radius: 3vw;
     resize: none;
+    border: 2px solid #e5e7eb;
+    background-color: #ffffff;
+    font-size: calc(0.9rem + 0.8vw);
+    color: #1f2937;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    outline: none;
+}
+
+#diaryInput:focus {
+    border-color: #2C5282;
+    box-shadow: 0 0 0 4px rgba(44, 82, 130, 0.1);
+    background-color: #ffffff;
+}
+
+#diaryInput:hover {
+    border-color: #d1d5db;
 }
 
 #diaryButtons{
@@ -63,28 +81,45 @@
     gap: 3vw;
 }
 
-.diaryButton{
+.diaryButton {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    padding: 2vw 0;
+    padding: 2.5vw 0;
     border-radius: 4vw;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: calc(0.9rem + 0.8vw);
 }
 
-.diaryButton p, .diaryButton span{
+.diaryButton p, .diaryButton span {
     color: black;
 }
 
-#recordDiary{
-    border: 1px #8bb5db solid;
-    background-color: #a3cef1;
+#recordDiary {
+    border: 2px solid #60a5fa;
+    background: linear-gradient(135deg, #a3cef1 0%, #7dd3fc 100%);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
-#saveDiary{
+#recordDiary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+#saveDiary {
     border: none;
-    background-color: #a7dca5;
+    background: linear-gradient(135deg, #a7dca5 0%, #86efac 100%);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+#saveDiary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
 }
 
 #userDiaries{
@@ -96,13 +131,22 @@
     margin-bottom: 14vh;
 }
 
-.diaryLog{
+.diaryLog {
     display: flex;
     flex-direction: column;
     background: white;
     width: 80vw;
-    border: #F0F2F6 0.8vw solid;
+    border: 2px solid #e5e7eb;
     gap: 1vh;
     padding: 4vw;
-    border-radius: 3.5vw;
+    border-radius: 4vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.diaryLog:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.06);
+    border-color: #d1d5db;
 }

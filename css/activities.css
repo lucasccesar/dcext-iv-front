@@ -41,16 +41,25 @@ body{
     font-size: calc(0.6rem + 1vw);
 }
 
-.activitySuggestion{
+.activitySuggestion {
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 3vw;
     align-items: center;
-    background-color: #d1cb963a;
+    background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
     padding: 4vw;
-    border: #ded5a7 0.3vw solid;
-    border-radius: 3.5vw;
+    border: 2px solid #fde68a;
+    border-radius: 4vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+    cursor: pointer;
+}
+
+.activitySuggestion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.06);
 }
 
 .activityEmoji{
@@ -101,15 +110,24 @@ body{
     font-size: calc(0.6rem + 0.7vw);
 }
 
-#myActivitiesAdd{
+#myActivitiesAdd {
     display: flex;
     align-items: center;
-    background-color: #a7dca5;
-    padding: 2vw;
+    background: linear-gradient(135deg, #a7dca5 0%, #86efac 100%);
+    padding: 2.5vw 3vw;
     border-radius: 4vw;
     border: none;
     gap: 1vw;
     text-decoration: none;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+    cursor: pointer;
+}
+
+#myActivitiesAdd:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
 }
 
 #myActivitiesAdd p, #myActivities span{
@@ -117,7 +135,7 @@ body{
     color: black;
 }
 
-#noActivities{
+#noActivities {
     background-color: white;
     padding: 6vw;
     display: flex;
@@ -126,7 +144,8 @@ body{
     align-items: center;
     gap: 3vw;
     border-radius: 5vw;
-    border: 1px #bfcbd9 dashed;
+    border: 2px #d1d5db dashed;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 #noActivitiesEmoji{
@@ -138,11 +157,20 @@ body{
     font-size: calc(0.6rem + 0.7vw);
 }
 
-#noActivities a{
+#noActivities a {
     text-decoration: none;
-    background-color: #ffd97d;
-    color: black;
-    padding: 2vw 4vw;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #1f2937;
+    padding: 2.5vw 4vw;
     border-radius: 4vw;
-    font-size: calc(0.6rem + 0.7vw);
+    font-size: calc(0.7rem + 0.8vw);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+#noActivities a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
 }

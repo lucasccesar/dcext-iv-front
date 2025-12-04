@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-#txtWrapper{
+#txtWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,166 +14,330 @@
     text-align: center;
 }
 
-#txtEmoji{
+#txtEmoji {
     font-size: calc(1.5rem + 3vw);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-#txtTitle{
+#txtTitle {
     font-size: calc(1.4rem + 2vw);
     color: #264770;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(38, 71, 112, 0.1);
 }
 
-#remindersWrapper{
+#remindersWrapper {
     display: flex;
     flex-direction: column;
     width: 80vw;
     height: 100%;
-    gap: 3vh;
-    border-radius: 3.5vw;
-    margin-bottom: 28vw;
-}
-
-#reminders{
-    display: flex;
-    flex-direction: column;
     gap: 5vw;
+    margin-bottom: 14vh;
 }
 
-.reminder{
-    width: 100%;
+#reminders {
     display: flex;
-    justify-content: space-between;
-    gap: 3vw;
-    align-items: center;
-    background-color: #d1cb963a;
-    padding: 4vw;
-    border: #ded5a7 0.3vw solid;
-    border-radius: 3.5vw;
     flex-direction: column;
-    transition: 300ms;
+    gap: 4vw;
 }
 
-.reminderDesc{
+.reminder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5vw;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+    padding: 5vw;
+    border: 2px solid rgba(229, 231, 235, 0.8);
+    border-radius: 4.5vw;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 4px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.reminder:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.12),
+        0 6px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: #d1d5db;
+}
+
+.reminderDesc {
     display: flex;
     width: 100%;
     align-items: center;
-    gap: 1vw;
+    gap: 2vw;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.reminderDesc span{
-    color: #ded5a7;
-    font-size: calc(0.6rem + 0.7vw);
-}
-
-.reminderDesc p{
-    width: fit-content;
-    font-size: calc(0.6rem + 0.7vw);
-}
-
-.reminderDescDiv{
+.reminderDescDiv {
     display: flex;
-    flex-direction: row;
-}
-
-.activityDuration{
-    display: flex;
-    width: fit-content;
     align-items: center;
-    gap: 1vw;
+    gap: 2vw;
+    flex: 1;
+    min-width: 50%;
 }
 
-.activityDuration span{
-    color: black;
+.reminderDescDiv .material-symbols-outlined {
+    font-size: calc(1.2rem + 1.5vw);
+    color: #2C5282;
+    filter: drop-shadow(0 1px 2px rgba(44, 82, 130, 0.2));
 }
 
-.reminderButtons{
+.reminderDesc p {
+    font-size: calc(0.9rem + 1vw);
+    font-weight: 600;
+    color: #1f2937;
+    letter-spacing: 0.2px;
+    margin: 0;
+}
+
+.activityDuration {
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    padding: 2vw 3vw;
+    background: rgba(44, 82, 130, 0.08);
+    border-radius: 3vw;
+}
+
+.activityDuration .material-symbols-outlined {
+    font-size: calc(1rem + 1vw);
+    color: #2C5282;
+}
+
+.activityDuration p {
+    font-size: calc(0.8rem + 0.8vw);
+    color: #264770;
+    font-weight: 500;
+    margin: 0;
+}
+
+.reminderButtons {
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 3vw;
+    align-items: stretch;
 }
 
-.markAsRead{
-    background-color: #a7dca5;
+.markAsRead {
+    background: linear-gradient(135deg, #a7dca5 0%, #86efac 100%);
     border: none;
-    border-radius: 4vw;
-    width: 100%;
+    border-radius: 3.5vw;
+    flex: 1;
     display: flex;
     align-items: center;
-    padding: 3vw 0;
+    padding: 3.5vw 4vw;
     justify-content: center;
     gap: 2vw;
+    box-shadow: 
+        0 6px 16px rgba(34, 197, 94, 0.25),
+        0 2px 8px rgba(34, 197, 94, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+    cursor: pointer;
 }
 
-.markAsRead p, .markAsRead span{
-    font-size: calc(0.6rem + 0.7vw);
+.markAsRead:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(34, 197, 94, 0.35),
+        0 4px 10px rgba(34, 197, 94, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.delete{
-    background-color: #d5183f;
-    padding: 3vw;
-    border-radius: 4vw;
+.markAsRead:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 12px rgba(34, 197, 94, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.markAsRead .material-symbols-outlined {
+    font-size: calc(1rem + 1vw);
+    color: #1f2937;
+}
+
+.markAsRead p {
+    font-size: calc(0.8rem + 0.8vw);
+    color: #1f2937;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.2px;
+}
+
+.delete {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    padding: 3.5vw;
+    border-radius: 3.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
+    min-width: 15vw;
+    box-shadow: 
+        0 6px 16px rgba(239, 68, 68, 0.25),
+        0 2px 8px rgba(239, 68, 68, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+    cursor: pointer;
 }
 
-.delete span{
+.delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(239, 68, 68, 0.35),
+        0 4px 10px rgba(239, 68, 68, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.delete:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 12px rgba(239, 68, 68, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.delete .material-symbols-outlined {
     color: white;
-    font-size: calc(0.6rem + 0.7vw);
+    font-size: calc(1rem + 1vw);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
-#remindersCount{
+#remindersCount {
     display: flex;
-    align-items: center;
-    background: white;
+    align-items: stretch;
     width: 80vw;
-    border: #F0F2F6 0.8vw solid;
-    height: 100%;
-    gap: 3vh;
-    padding: 6vw;
-    border-radius: 3.5vw;
-    justify-content: space-around;
+    gap: 4vw;
+    justify-content: space-between;
 }
 
-#remindersDone, #remindersActive{
+#remindersDone, #remindersActive {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1vw;
+    justify-content: center;
+    gap: 2vw;
+    padding: 5vw;
+    border-radius: 4.5vw;
+    flex: 1;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+    border: 2px solid rgba(229, 231, 235, 0.8);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 4px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
 }
 
-.remindersNum{
-    font-size: calc(0.8rem + 1vw);
+#remindersDone:hover, #remindersActive:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.12),
+        0 6px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: #d1d5db;
 }
 
-.remindersTxt{
-    font-size: calc(0.6rem + 0.7vw);
+.remindersNum {
+    font-size: calc(1.5rem + 2vw);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1;
 }
 
-#remindersActive .remindersNum{
-    color: #2c5291;
+.remindersTxt {
+    font-size: calc(0.8rem + 0.8vw);
+    font-weight: 500;
+    color: #6b7280;
+    letter-spacing: 0.3px;
 }
 
-#remindersDone .remindersNum{
-    color: #a7dcbb;
+#remindersActive {
+    border-color: rgba(44, 82, 130, 0.3);
 }
 
-.reminderRead{
-    background-color: #d0e7f8;
+#remindersActive .remindersNum {
+    color: #2C5282;
+    text-shadow: 0 2px 4px rgba(44, 82, 130, 0.15);
 }
 
-.reminderRead .markAsRead{
-    background-color: #a3cef1;
+#remindersActive:hover {
+    border-color: rgba(44, 82, 130, 0.5);
+    box-shadow: 
+        0 12px 32px rgba(44, 82, 130, 0.15),
+        0 6px 12px rgba(44, 82, 130, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-.reminderRead .reminderDesc p{
+#remindersDone {
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+#remindersDone .remindersNum {
+    color: #22c55e;
+    text-shadow: 0 2px 4px rgba(34, 197, 94, 0.15);
+}
+
+#remindersDone:hover {
+    border-color: rgba(34, 197, 94, 0.5);
+    box-shadow: 
+        0 12px 32px rgba(34, 197, 94, 0.15),
+        0 6px 12px rgba(34, 197, 94, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.reminderRead {
+    background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-color: #93c5fd;
+    opacity: 0.85;
+}
+
+.reminderRead:hover {
+    opacity: 1;
+}
+
+.reminderRead .reminderDescDiv .material-symbols-outlined {
+    color: #60a5fa;
+}
+
+.reminderRead .markAsRead {
+    background: linear-gradient(135deg, #a3cef1 0%, #7dd3fc 100%);
+    box-shadow: 
+        0 6px 16px rgba(59, 130, 246, 0.25),
+        0 2px 8px rgba(59, 130, 246, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.reminderRead .markAsRead:hover {
+    box-shadow: 
+        0 8px 20px rgba(59, 130, 246, 0.35),
+        0 4px 10px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.reminderRead .reminderDesc p {
     text-decoration: line-through;
+    color: #64748b;
+    opacity: 0.7;
 }
 
-.reminderRead .reminderDesc span{
-    color: black;
+.reminderRead .activityDuration {
+    background: rgba(59, 130, 246, 0.12);
+}
+
+.reminderRead .activityDuration p,
+.reminderRead .activityDuration .material-symbols-outlined {
+    color: #3b82f6;
 }
