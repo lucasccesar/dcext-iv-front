@@ -4,11 +4,12 @@ const saveGratefulButton = document.getElementById("savegrateful");
 const userGratefuls = document.getElementById("userGratefuls");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-const API_URL = "http://localhost:8000";
+
+const API_URL = window.location.hostname + ":8000";
 
 async function loadUserGratefuls() {
     try {
-        const res = await fetch(`${API_URL}/gratidoes/usuario/${usuarioLogado.id_usuario}`);
+        const res = await fetch(`http://${API_URL}/gratidoes/usuario/${usuarioLogado.id_usuario}`);
         if (!res.ok) throw new Error("Erro ao buscar gratidão");
 
         const gratefuls = await res.json();
@@ -59,7 +60,7 @@ saveGratefulButton.addEventListener("click", async (e) => {
     };
 
     try {
-        const res = await fetch(`${API_URL}/gratidoes/`, {
+        const res = await fetch(`http://${API_URL}/gratidoes/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)

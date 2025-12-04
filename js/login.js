@@ -2,6 +2,8 @@ const form = document.querySelector("form");
 const emailInput = form.querySelectorAll("input")[0];
 const passwordInput = form.querySelectorAll("input")[1];
 
+const API_URL = window.location.hostname + ":8000";
+
 // Se já está logado, redireciona
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 if (usuarioLogado) {
@@ -21,7 +23,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         // Chamada ao endpoint de login
-        const response = await fetch("http://localhost:8000/usuarios/login", {
+        const response = await fetch(`http://${API_URL}/usuarios/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, senha })

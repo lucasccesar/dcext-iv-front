@@ -2,6 +2,8 @@ const remindersContainer = document.getElementById("reminders");
 const remindersActive = document.querySelector("#remindersActive .remindersNum");
 const remindersDone = document.querySelector("#remindersDone .remindersNum");
 
+const API_URL = window.location.hostname + ":8000";
+
 // Carregar o usuário logado do localStorage
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -15,7 +17,7 @@ let reminders = []; // Inicializando a variável 'reminders'
 // Função para carregar os lembretes do usuário a partir da API
 async function loadUserReminders() {
     try {
-        const res = await fetch(`https://dcext-iv-backend.onrender.com/lembretes/usuario/${usuarioLogado.id_usuario}`);
+        const res = await fetch(`http://${API_URL}/lembretes/usuario/${usuarioLogado.id_usuario}`);
         if (!res.ok) throw new Error("Erro ao buscar lembretes");
 
         // Preencher a variável 'reminders' com os dados da API
@@ -23,7 +25,7 @@ async function loadUserReminders() {
 
         // Carregar as atividades associadas a cada lembrete
         for (let reminder of reminders) {
-            const activityRes = await fetch(`https://dcext-iv-backend.onrender.com/atividades/${reminder.id_atividade}`);
+            const activityRes = await fetch(`http://${API_URL}/atividades/${reminder.id_atividade}`);
             if (!activityRes.ok) {
                 console.error(`Erro ao carregar a atividade para o lembrete ${reminder.id_lembrete}`);
                 continue;
@@ -112,7 +114,7 @@ function renderReminders() {
         markBtn.addEventListener("click", async () => {
             reminder.lido = !reminder.lido;
             try {
-                const res = await fetch(`https://dcext-iv-backend.onrender.com/lembretes/${reminder.id_lembrete}`, {
+                const res = await fetch(`http://${API_URL}/lembretes/${reminder.id_lembrete}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -130,7 +132,7 @@ function renderReminders() {
         const delBtn = div.querySelector(".delete");
         delBtn.addEventListener("click", async () => {
             try {
-                const res = await fetch(`https://dcext-iv-backend.onrender.com/lembretes/${reminder.id_lembrete}`, {
+                const res = await fetch(`http://${API_URL}/lembretes/${reminder.id_lembrete}`, {
                     method: "DELETE",
                 });
                 if (!res.ok) throw new Error("Erro ao excluir lembrete");

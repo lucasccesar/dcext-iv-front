@@ -3,13 +3,15 @@ const mostMoodSpan = document.getElementById('mostMood');
 const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
 const emotionCtx = document.getElementById('emotionChart').getContext('2d');
 
+const API_URL = window.location.hostname + ":8000";
+
 // Inicializando a lista de diários vazia
 let diarios = [];
 
 // Função para carregar os diários do usuário a partir da API
 async function loadUserDiaries() {
     try {
-        const res = await fetch(`http://localhost:8000/diarios/usuario/${usuarioLogado.id_usuario}`);
+        const res = await fetch(`http://${API_URL}/diarios/usuario/${usuarioLogado.id_usuario}`);
         if (!res.ok) throw new Error("Erro ao buscar diários");
 
         // Preenchendo a variável 'diarios' com os dados da API

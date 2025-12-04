@@ -2,12 +2,14 @@ const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 const noActivities = document.getElementById("noActivities");
 const myActivities = document.getElementById("myActivities");
 
+const API_URL = window.location.hostname + ":8000";
+
 let activities = [];
 
 // Função para carregar as atividades do usuário a partir da API
 async function loadUserActivities() {
     try {
-        const res = await fetch(`http://localhost:8000/atividades/usuario/${usuarioLogado.id_usuario}`);
+        const res = await fetch(`http://${API_URL}/atividades/usuario/${usuarioLogado.id_usuario}`);
         if (!res.ok) throw new Error("Erro ao buscar atividades");
 
         // Preencher a variável 'activities' com os dados da API
@@ -76,13 +78,13 @@ function renderActivities() {
 
             try {
                 // Verificar se já existe um lembrete para a atividade
-                const resGet = await fetch(`http://localhost:8000/lembretes/usuario/${usuarioLogado.id_usuario}`);
+                const resGet = await fetch(`http://${API_URL}/lembretes/usuario/${usuarioLogado.id_usuario}`);
                 const reminders = await resGet.json();
 
                 // Se a atividade já estiver nos lembretes, remove
                 const existingReminder = reminders.find(rem => rem.id_atividade === item.id_atividade);
                 if (existingReminder) {
-                    const resDelete = await fetch(`http://localhost:8000/lembretes/${existingReminder.id_lembrete}`, {
+                    const resDelete = await fetch(`http://${API_URL}/lembretes/${existingReminder.id_lembrete}`, {
                         method: "DELETE",
                     });
                     if (resDelete.ok) {
@@ -94,7 +96,7 @@ function renderActivities() {
                     }
                 } else {
                     // Caso contrário, adiciona o lembrete
-                    const resAdd = await fetch("http://localhost:8000/lembretes/", {
+                    const resAdd = await fetch(`http://${API_URL}/lembretes/`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
