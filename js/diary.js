@@ -5,7 +5,8 @@ const userDiariesContainer = document.getElementById("userDiaries");
 const emotionSelect = document.getElementById("emotionSelect");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-const API_URL = "http://localhost:8000";
+
+const API_URL = window.location.hostname + ":8000";
 
 const urlParams = new URLSearchParams(window.location.search);
 const urlEmotion = urlParams.get("emocao");
@@ -13,7 +14,7 @@ if (urlEmotion) emotionSelect.value = urlEmotion;
 
 async function loadUserDiaries() {
     try {
-        const res = await fetch(`${API_URL}/diarios/usuario/${usuarioLogado.id_usuario}`);
+        const res = await fetch(`http://${API_URL}/diarios/usuario/${usuarioLogado.id_usuario}`);
         if (!res.ok) throw new Error("Erro ao buscar diários");
 
         const diarios = await res.json();
@@ -89,7 +90,7 @@ saveDiaryButton.addEventListener("click", async (e) => {
     console.log(payload);
 
     try {
-        const res = await fetch(`${API_URL}/diarios/`, {
+        const res = await fetch(`http://${API_URL}/diarios/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)

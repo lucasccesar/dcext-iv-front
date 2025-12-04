@@ -2,12 +2,14 @@ const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 const noActivities = document.getElementById("noActivities");
 const myActivities = document.getElementById("myActivities");
 
+const API_URL = window.location.hostname + ":8000";
+
 let activities = [];
 
 // Função para carregar as atividades do usuário a partir da API
 async function loadUserActivities() {
     try {
-        const res = await fetch(`http://localhost:8000/atividades/usuario/${usuarioLogado.id_usuario}`);
+        const res = await fetch(`http://${API_URL}/atividades/usuario/${usuarioLogado.id_usuario}`);
         if (!res.ok) throw new Error("Erro ao buscar atividades");
 
         // Preencher a variável 'activities' com os dados da API
@@ -49,11 +51,72 @@ function renderActivities() {
             .map(d => translateDay(d))
             .join(", ");
 
+        // Adiciona o botão "Adicionar aos lembretes" com toggle
+        const addToRemindersButtonText = item.isInReminders ? "notifications_off" : "notifications";
+
         div.innerHTML = `
             <p style="font-size:calc(0.6rem + 0.7vw);color:#264770;">${item.nome}</p>
             <p style="font-size:calc(0.6rem + 0.6vw);">${daysText}</p>
             <p style="font-size:calc(0.6rem + 0.6vw);opacity:0.6;">${item.horario}</p>
+            <button class="addToRemindersButton">
+                <span class="material-symbols-outlined">${addToRemindersButtonText}</span>
+            </button>
         `;
+
+        // Função que é chamada ao clicar no botão "Adicionar aos lembretes"
+        const addToRemindersButton = div.querySelector(".addToRemindersButton");
+        const addToRemindersButtonSpan = div.querySelector(".addToRemindersButton span");
+        addToRemindersButton.addEventListener("click", async () => {
+            const reminder = {
+                id_usuario: usuarioLogado.id_usuario,
+                id_atividade: item.id_atividade,
+                mensagem_do_lembrete: item.nome,
+                dias_da_semana: item.dias_da_semana,
+                horario: item.horario,
+                lido: false // Marca o lembrete como não lido inicialmente
+            };
+
+            try {
+                // Verificar se já existe um lembrete para a atividade
+                const resGet = await fetch(`http://${API_URL}/lembretes/usuario/${usuarioLogado.id_usuario}`);
+                const reminders = await resGet.json();
+
+                // Se a atividade já estiver nos lembretes, remove
+                const existingReminder = reminders.find(rem => rem.id_atividade === item.id_atividade);
+                if (existingReminder) {
+                    const resDelete = await fetch(`http://${API_URL}/lembretes/${existingReminder.id_lembrete}`, {
+                        method: "DELETE",
+                    });
+                    if (resDelete.ok) {
+                        item.isInReminders = false;  // Atualiza a atividade para não estar nos lembretes
+                        addToRemindersButtonSpan.innerText = "notifications"; // Alterar o texto do botão
+                        alert("Lembrete removido com sucesso!");
+                    } else {
+                        throw new Error("Erro ao remover lembrete");
+                    }
+                } else {
+                    // Caso contrário, adiciona o lembrete
+                    const resAdd = await fetch(`http://${API_URL}/lembretes/`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(reminder)
+                    });
+
+                    if (!resAdd.ok) {
+                        throw new Error("Erro ao adicionar lembrete");
+                    }
+
+                    item.isInReminders = true;  // Atualiza a atividade para estar nos lembretes
+                    addToRemindersButtonSpan.innerText = "notifications_off"; // Alterar o texto do botão
+                    alert("Lembrete adicionado com sucesso!");
+                }
+            } catch (err) {
+                console.error("Erro ao adicionar/remover lembrete:", err);
+                alert("Erro ao adicionar/remover lembrete.");
+            }
+        });
 
         myActivities.appendChild(div);
     });
@@ -61,13 +124,13 @@ function renderActivities() {
 
 // Função para traduzir o dia da semana
 function translateDay(d) {
-    if (d === "monday") return "Segunda";
-    if (d === "tuesday") return "Terça";
-    if (d === "wednesday") return "Quarta";
-    if (d === "thursday") return "Quinta";
-    if (d === "friday") return "Sexta";
+    if (d === "monday") return "Segunda-feira";
+    if (d === "tuesday") return "Terça-feira";
+    if (d === "wednesday") return "Quarta-feira";
+    if (d === "thursday") return "Quinta-feira";
+    if (d === "friday") return "Sexta-feira";
     if (d === "saturday") return "Sábado";
-    return "Domingo";
+    return "Domingo";  // Se for domingo
 }
 
 // Carregar as atividades do usuário ao inicializar

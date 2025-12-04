@@ -2,6 +2,8 @@ const form = document.getElementById("newActivityForm");
 const nameInput = document.getElementById("activityName");
 const timeInput = document.getElementById("time");
 
+const API_URL = window.location.hostname + ":8000";
+
 // Carregar o usuário logado do localStorage
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -43,7 +45,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         // Enviar a atividade para a API
-        const res = await fetch("http://localhost:8000/atividades/", {
+        const res = await fetch(`http://${API_URL}/atividades/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

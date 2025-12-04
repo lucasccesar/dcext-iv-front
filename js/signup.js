@@ -4,6 +4,8 @@ const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
 const typeInput = document.getElementById("typeInput");
 
+const API_URL = window.location.hostname + ":8000";
+
 // Se já está logado, redireciona
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 if (usuarioLogado) {
@@ -25,7 +27,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         // 🔹 Chamada real para a API FastAPI
-        const response = await fetch("http://localhost:8000/usuarios/", {
+        const response = await fetch(`http://${API_URL}/usuarios/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, email, senha, tipo })
