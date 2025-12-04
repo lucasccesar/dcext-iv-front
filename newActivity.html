@@ -1,129 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/newActivity.css" />
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Login</title>
-</head>
-<body>
-    <button id="sidebarButton">
-        <span class="material-symbols-outlined">menu</span>
-    </button>
-    <div id="sidebar" class="sidebarClosed">
-        <button>
-            <span class="material-symbols-outlined">close</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/newActivity.css" />
+        <link rel="stylesheet" href="./css/global.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <title>Login</title>
+    </head>
+    <body>
+        <button id="sidebarButton">
+            <span class="material-symbols-outlined">menu</span>
         </button>
-        <div id="sidebarLinks">
-            <a href="./main.html" class="sidebarLink">
-                <span class="material-symbols-outlined">home</span>
-                <p>Início</p>
-            </a>
-            <a href="./diary.html" class="sidebarLink">
-                <span class="material-symbols-outlined">import_contacts</span>
-                <p>Diário</p>
-            </a>
-            <a href="./grateful.html" class="sidebarLink">
-                <span class="material-symbols-outlined">favorite</span>
-                <p>Gratidão</p>
-            </a>
-            <a href="./humor.html" class="sidebarLink">
-                <span class="material-symbols-outlined">finance</span>
-                <p>Humor</p>
-            </a>
-            <a href="./activities.html" class="sidebarLink">
-                <span class="material-symbols-outlined">planner_review</span>
-                <p>Atividades</p>
-            </a>
-            <a href="./reminders.html" class="sidebarLink">
-                <span class="material-symbols-outlined">notifications</span>
-                <p>Lembretes</p>
-            </a>
-            <a href="./share.html" class="sidebarLink">
-                <span class="material-symbols-outlined">share</span>
-                <p>Compartilhar</p>
-            </a>
-            <a href="./configurations.html" class="sidebarLink">
-                <span class="material-symbols-outlined">settings</span>
-                <p>Configurações</p>
-            </a>
+        <div id="sidebar" class="sidebarClosed">
+            <button>
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div id="sidebarLinks">
+                <a href="./main.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">home</span>
+                    <p>Início</p>
+                </a>
+                <a href="./diary.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">import_contacts</span>
+                    <p>Diário</p>
+                </a>
+                <a href="./grateful.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <p>Gratidão</p>
+                </a>
+                <a href="./humor.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">finance</span>
+                    <p>Humor</p>
+                </a>
+                <a href="./activities.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">planner_review</span>
+                    <p>Atividades</p>
+                </a>
+                <a href="./reminders.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <p>Lembretes</p>
+                </a>
+                <a class="sidebarLink" id="logoutBtn">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p>Sair</p>
+                </a>
+            </div>
         </div>
-    </div>
-    <div id="sidebarBackground" style="display: none;"></div>
-    <div id="wrapper">
-        <div id="txtWrapper">
-            <p id="txtEmoji">✨</p>
-            <p id="txtTitle">Nova Atividade</p>
+        <div id="sidebarBackground" style="display: none"></div>
+        <div id="wrapper">
+            <div id="txtWrapper">
+                <p id="txtEmoji">✨</p>
+                <p id="txtTitle">Nova Atividade</p>
+            </div>
+            <form id="newActivityForm">
+                <div id="activityNameDiv" class="activityDiv">
+                    <label for="activityName">Nome da Atividade:</label>
+                    <input type="text" placeholder="Ex: Tomar remédio, Caminhada, Leitura..." id="activityName" name="activityName" />
+                </div>
+                <div id="daysDiv" class="activityDiv">
+                    <fieldset>
+                        <legend>Dias da Semana:</legend>
+                        <div>
+                            <input type="checkbox" id="monday" name="day" value="monday" />
+                            <label for="monday">Segunda-Feira</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="tuesday" name="day" value="tuesday" />
+                            <label for="tuesday">Terça-Feira</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="wednesday" name="day" value="wednesday" />
+                            <label for="wednesday">Quarta-Feira</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="thursday" name="day" value="thursday" />
+                            <label for="thursday">Quinta-Feira</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="friday" name="day" value="friday" />
+                            <label for="friday">Sexta-Feira</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="saturday" name="day" value="saturday" />
+                            <label for="saturday">Sábado</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="sunday" name="day" value="sunday" />
+                            <label for="sunday">Domingo</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="activityDiv">
+                    <label for="time">Horário da Atividade</label>
+                    <input type="time" name="time" id="time" />
+                </div>
+                <input type="submit" value="Salvar Atividade" id="inputSubmit" />
+            </form>
         </div>
-        <form id="newActivityForm">
-            <div id="activityNameDiv" class="activityDiv">
-                <label for="activityName">Nome da Atividade:</label>
-                <input type="text" placeholder="Ex: Tomar remédio, Caminhada, Leitura..." id="activityName" name="activityName">
-            </div>
-            <div id="daysDiv" class="activityDiv">
-                <fieldset>
-                    <legend>Dias da Semana:</legend>
-                    <div>
-                        <input type="checkbox" id="monday" name="day" value="monday" />
-                        <label for="monday">Segunda-Feira</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="tuesday" name="day" value="tuesday" />
-                        <label for="tuesday">Terça-Feira</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="wednesday" name="day" value="wednesday" />
-                        <label for="wednesday">Quarta-Feira</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="thursday" name="day" value="thursday" />
-                        <label for="thursday">Quinta-Feira</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="friday" name="day" value="friday" />
-                        <label for="friday">Sexta-Feira</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="saturday" name="day" value="saturday" />
-                        <label for="saturday">Sábado</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="sunday" name="day" value="sunday" />
-                        <label for="sunday">Domingo</label>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="activityDiv">
-                <label for="time">Horário da Atividade</label>
-                <input type="time" name="time" id="time">
-            </div>
-            <input type="submit" value="Salvar Atividade" id="inputSubmit">
-        </form>
-    </div>
 
-    <footer>
-        <div id="upperFooter" class="footerDiv">
-            <a class="footerButton" href="./main.html">
-                <span class="material-symbols-outlined">home</span>
-                <p>Início</p>
-            </a>
-            <a class="footerButton" href="./diary.html">
-                <span class="material-symbols-outlined">import_contacts</span>
-                <p>Diário</p>
-            </a>
-            <a class="footerButton" href="./grateful.html">
-                <span class="material-symbols-outlined">favorite</span>
-                <p>Gratidão</p>
-            </a>
-            <a class="footerButton" href="./humor.html">
-                <span class="material-symbols-outlined">finance</span>
-                <p>Humor</p>
-            </a>
-        </div>
-    </footer>
-</body>
-<script src="./js/global.js" type="module"></script>
-<script src="./js/newActivity.js" type="module"></script>
+        <footer>
+            <div id="upperFooter" class="footerDiv">
+                <a class="footerButton" href="./main.html">
+                    <span class="material-symbols-outlined">home</span>
+                    <p>Início</p>
+                </a>
+                <a class="footerButton" href="./diary.html">
+                    <span class="material-symbols-outlined">import_contacts</span>
+                    <p>Diário</p>
+                </a>
+                <a class="footerButton" href="./grateful.html">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <p>Gratidão</p>
+                </a>
+                <a class="footerButton" href="./humor.html">
+                    <span class="material-symbols-outlined">finance</span>
+                    <p>Humor</p>
+                </a>
+            </div>
+        </footer>
+    </body>
+    <script src="./js/global.js" type="module"></script>
+    <script src="./js/newActivity.js" type="module"></script>
 </html>

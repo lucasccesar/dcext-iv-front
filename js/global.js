@@ -14,18 +14,24 @@ const selectedEmotion = document.getElementById('selectedEmotion')
 closeSidebar.addEventListener('click', ()=>{
     sidebar.classList.replace('sidebarOpened', 'sidebarClosed')
     sidebarBackground.style.display = "none"
+    openSidebar.style.display = "flex"
+    openSidebar.style.visibility = "visible"
     root.style.overflowY = 'scroll'
 });
 
 openSidebar.addEventListener('click', ()=>{
     sidebar.classList.replace('sidebarClosed', 'sidebarOpened')
     sidebarBackground.style.display = "block"
+    openSidebar.style.display = "none"
+    openSidebar.style.visibility = "hidden"
     root.style.overflowY = 'hidden'
 })
 
 sidebarBackground.addEventListener('click', ()=>{
     sidebar.classList.replace('sidebarOpened', 'sidebarClosed')
     sidebarBackground.style.display = "none"
+    openSidebar.style.display = "flex"
+    openSidebar.style.visibility = "visible"
     root.style.overflowY = 'scroll'
 });
 
@@ -49,3 +55,8 @@ function changeSelectedEmotion(){
     selectedEmotion.children[0].innerText = emotionTarget.children[0].innerText;
     selectedEmotion.children[1].innerHTML = `Você está se sentindo <b>${emotionTarget.children[1].innerText}</b> hoje`;
 }
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('usuarioLogado');
+    window.location.href = './login.html';
+});

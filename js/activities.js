@@ -21,7 +21,12 @@ async function loadUserActivities() {
 }
 
 // Função para renderizar as atividades na tela
-function renderActivities() {
+async function renderActivities() {
+    // Verificar se já existe um lembrete para a atividade
+    const resGet = await fetch(`http://${API_URL}/lembretes/usuario/${usuarioLogado.id_usuario}`);
+    const reminders = await resGet.json();
+    console.log(reminders)
+
     const items = activities;
 
     // Exibe ou oculta a mensagem de "Sem Atividades"
@@ -33,6 +38,8 @@ function renderActivities() {
 
     // Renderiza cada atividade
     items.forEach(item => {
+        const existingReminder = reminders.find(rem => rem.id_atividade === item.id_atividade)
+
         const div = document.createElement("div");
         div.classList.add("userActivity");
         div.style.background = "white";
@@ -52,20 +59,18 @@ function renderActivities() {
             .join(", ");
 
         // Adiciona o botão "Adicionar aos lembretes" com toggle
-        const addToRemindersButtonText = item.isInReminders ? "notifications_off" : "notifications";
+        console.log(item)
+        const addToRemindersButtonText = existingReminder ? "Desativar Notificação" : "Ativar Notificação";
 
         div.innerHTML = `
             <p style="font-size:calc(0.6rem + 0.7vw);color:#264770;">${item.nome}</p>
             <p style="font-size:calc(0.6rem + 0.6vw);">${daysText}</p>
             <p style="font-size:calc(0.6rem + 0.6vw);opacity:0.6;">${item.horario}</p>
-            <button class="addToRemindersButton">
-                <span class="material-symbols-outlined">${addToRemindersButtonText}</span>
-            </button>
+            <button class="addToRemindersButton">${addToRemindersButtonText}</button>
         `;
 
         // Função que é chamada ao clicar no botão "Adicionar aos lembretes"
         const addToRemindersButton = div.querySelector(".addToRemindersButton");
-        const addToRemindersButtonSpan = div.querySelector(".addToRemindersButton span");
         addToRemindersButton.addEventListener("click", async () => {
             const reminder = {
                 id_usuario: usuarioLogado.id_usuario,
@@ -77,19 +82,13 @@ function renderActivities() {
             };
 
             try {
-                // Verificar se já existe um lembrete para a atividade
-                const resGet = await fetch(`http://${API_URL}/lembretes/usuario/${usuarioLogado.id_usuario}`);
-                const reminders = await resGet.json();
-
-                // Se a atividade já estiver nos lembretes, remove
-                const existingReminder = reminders.find(rem => rem.id_atividade === item.id_atividade);
                 if (existingReminder) {
                     const resDelete = await fetch(`http://${API_URL}/lembretes/${existingReminder.id_lembrete}`, {
                         method: "DELETE",
                     });
                     if (resDelete.ok) {
                         item.isInReminders = false;  // Atualiza a atividade para não estar nos lembretes
-                        addToRemindersButtonSpan.innerText = "notifications"; // Alterar o texto do botão
+                        addToRemindersButton.innerText = "Ativar Notificação"; // Alterar o texto do botão
                         alert("Lembrete removido com sucesso!");
                     } else {
                         throw new Error("Erro ao remover lembrete");
@@ -109,7 +108,7 @@ function renderActivities() {
                     }
 
                     item.isInReminders = true;  // Atualiza a atividade para estar nos lembretes
-                    addToRemindersButtonSpan.innerText = "notifications_off"; // Alterar o texto do botão
+                    addToRemindersButton.innerText = "Desativar Notificação"; // Alterar o texto do botão
                     alert("Lembrete adicionado com sucesso!");
                 }
             } catch (err) {

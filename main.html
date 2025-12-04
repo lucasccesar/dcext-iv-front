@@ -1,112 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Login</title>
-</head>
-<body>
-    <button id="sidebarButton">
-        <span class="material-symbols-outlined">menu</span>
-    </button>
-    <div id="sidebar" class="sidebarClosed">
-        <button>
-            <span class="material-symbols-outlined">close</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/main.css" />
+        <link rel="stylesheet" href="./css/global.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <title>Login</title>
+    </head>
+    <body>
+        <button id="sidebarButton">
+            <span class="material-symbols-outlined">menu</span>
         </button>
-        <div id="sidebarLinks">
-            <a href="#" class="sidebarLink sidebarLinkSelected">
-                <span class="material-symbols-outlined">home</span>
-                <p>Início</p>
-            </a>
-            <a href="./diary.html" class="sidebarLink">
-                <span class="material-symbols-outlined">import_contacts</span>
-                <p>Diário</p>
-            </a>
-            <a href="./grateful.html" class="sidebarLink">
-                <span class="material-symbols-outlined">favorite</span>
-                <p>Gratidão</p>
-            </a>
-            <a href="./humor.html" class="sidebarLink">
-                <span class="material-symbols-outlined">finance</span>
-                <p>Humor</p>
-            </a>
-            <a href="./activities.html" class="sidebarLink">
-                <span class="material-symbols-outlined">planner_review</span>
-                <p>Atividades</p>
-            </a>
-            <a href="./reminders.html" class="sidebarLink">
-                <span class="material-symbols-outlined">notifications</span>
-                <p>Lembretes</p>
-            </a>
-            <a href="./share.html" class="sidebarLink">
-                <span class="material-symbols-outlined">share</span>
-                <p>Compartilhar</p>
-            </a>
-            <a href="./configurations.html" class="sidebarLink">
-                <span class="material-symbols-outlined">settings</span>
-                <p>Configurações</p>
-            </a>
+        <div id="sidebar" class="sidebarClosed">
+            <button>
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div id="sidebarLinks">
+                <a href="#" class="sidebarLink sidebarLinkSelected">
+                    <span class="material-symbols-outlined">home</span>
+                    <p>Início</p>
+                </a>
+                <a href="./diary.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">import_contacts</span>
+                    <p>Diário</p>
+                </a>
+                <a href="./grateful.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <p>Gratidão</p>
+                </a>
+                <a href="./humor.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">finance</span>
+                    <p>Humor</p>
+                </a>
+                <a href="./activities.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">planner_review</span>
+                    <p>Atividades</p>
+                </a>
+                <a href="./reminders.html" class="sidebarLink">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <p>Lembretes</p>
+                </a>
+                <a class="sidebarLink" id="logoutBtn">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p>Sair</p>
+                </a>
+            </div>
         </div>
-    </div>
-    <div id="sidebarBackground" style="display: none;"></div>
-    <div id="wrapper">
-        <div id="txtWrapper">
-            <p id="txtEmoji">💝</p>
-            <p id="txtTitle">Como você está hoje?</p>
+        <div id="sidebarBackground" style="display: none"></div>
+        <div id="wrapper">
+            <div id="txtWrapper">
+                <p id="txtEmoji">💝</p>
+                <p id="txtTitle">Como você está hoje?</p>
+            </div>
+            <div id="emotionsDiv">
+                <a id="sad" class="emotion sadSelected" href="#selectedEmotion">
+                    <p class="emotionEmoji">😢</p>
+                    <p class="emotionText">Triste</p>
+                </a>
+                <a id="neutral" class="emotion" href="#selectedEmotion">
+                    <p class="emotionEmoji">😐</p>
+                    <p class="emotionText">Neutro</p>
+                </a>
+                <a id="happy" class="emotion" href="#selectedEmotion">
+                    <p class="emotionEmoji">😀</p>
+                    <p class="emotionText">Feliz</p>
+                </a>
+                <a id="inLove" class="emotion" href="#selectedEmotion">
+                    <p class="emotionEmoji">😍</p>
+                    <p class="emotionText">Apaixonado</p>
+                </a>
+                <a id="tired" class="emotion" href="#selectedEmotion">
+                    <p class="emotionEmoji">😴</p>
+                    <p class="emotionText">Cansado</p>
+                </a>
+            </div>
+            <div id="selectedEmotion">
+                <p id="selectedEmoji">❓</p>
+                <p id="selectedText">Selecione como você está hoje</p>
+                <a id="selectedButton" href="./diary.html">Quer contar mais? ✏️</a>
+            </div>
         </div>
-        <div id="emotionsDiv">
-            <a id="sad" class="emotion sadSelected" href="#selectedEmotion">
-                <p class="emotionEmoji">😢</p>
-                <p class="emotionText">Triste</p>
-            </a>
-            <a id="neutral" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😐</p>
-                <p class="emotionText">Neutro</p>
-            </a>
-            <a id="happy" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😀</p>
-                <p class="emotionText">Feliz</p>
-            </a>
-            <a id="inLove" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😍</p>
-                <p class="emotionText">Apaixonado</p>
-            </a>
-            <a id="tired" class="emotion" href="#selectedEmotion">
-                <p class="emotionEmoji">😴</p>
-                <p class="emotionText">Cansado</p>
-            </a>
-        </div>
-        <div id="selectedEmotion">
-            <p id="selectedEmoji">❓</p>
-            <p id="selectedText">Selecione como você está hoje</p>
-            <a id="selectedButton" href="./diary.html">Quer contar mais? ✏️</a>
-        </div>
-    </div>
 
-    <footer>
-        <div id="upperFooter" class="footerDiv">
-            <a class="footerButton footerButtonSelected" href="#">
-                <span class="material-symbols-outlined">home</span>
-                <p>Início</p>
-            </a>
-            <a class="footerButton" href="./diary.html">
-                <span class="material-symbols-outlined">import_contacts</span>
-                <p>Diário</p>
-            </a>
-            <a class="footerButton" href="./grateful.html">
-                <span class="material-symbols-outlined">favorite</span>
-                <p>Gratidão</p>
-            </a>
-            <a class="footerButton" href="./humor.html">
-                <span class="material-symbols-outlined">finance</span>
-                <p>Humor</p>
-            </a>
-        </div>
-    </footer>
-</body>
-<script src="./js/global.js" type="module"></script>
-<script src="./js/main.js" type="module"></script>
+        <footer>
+            <div id="upperFooter" class="footerDiv">
+                <a class="footerButton footerButtonSelected" href="#">
+                    <span class="material-symbols-outlined">home</span>
+                    <p>Início</p>
+                </a>
+                <a class="footerButton" href="./diary.html">
+                    <span class="material-symbols-outlined">import_contacts</span>
+                    <p>Diário</p>
+                </a>
+                <a class="footerButton" href="./grateful.html">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <p>Gratidão</p>
+                </a>
+                <a class="footerButton" href="./humor.html">
+                    <span class="material-symbols-outlined">finance</span>
+                    <p>Humor</p>
+                </a>
+            </div>
+        </footer>
+    </body>
+    <script src="./js/global.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
 </html>
