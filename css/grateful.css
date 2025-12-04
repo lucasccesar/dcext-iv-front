@@ -24,17 +24,18 @@
     font-weight: 500;
 }
 
-#gratefulForm{
+#gratefulForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #d1cb966b;
+    background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
     width: 80vw;
-    border: #ded5a7 0.8vw solid;
+    border: 2px solid #fde68a;
     height: 100%;
     gap: 3vh;
     padding: 6vw;
-    border-radius: 3.5vw;
+    border-radius: 4vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 #formTitle{
@@ -47,13 +48,29 @@
     color: black;
 }
 
-#gratefulInput{
+#gratefulInput {
     width: 100%;
     height: 20vh;
     padding: 3vw;
     border-radius: 3vw;
     resize: none;
-    border-color: #ded5a7;
+    border: 2px solid #e5e7eb;
+    background-color: #ffffff;
+    font-size: calc(0.9rem + 0.8vw);
+    color: #1f2937;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    outline: none;
+}
+
+#gratefulInput:focus {
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.1);
+    background-color: #ffffff;
+}
+
+#gratefulInput:hover {
+    border-color: #d1d5db;
 }
 
 #gratefulButtons{
@@ -62,28 +79,45 @@
     gap: 3vw;
 }
 
-.gratefulButton{
+.gratefulButton {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    padding: 2vw 0;
+    padding: 2.5vw 0;
     border-radius: 4vw;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow, border-color, background-color;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: calc(0.9rem + 0.8vw);
 }
 
-.gratefulButton p, .gratefulButton span{
+.gratefulButton p, .gratefulButton span {
     color: black;
 }
 
-#recordgrateful{
-    border: 1px #8bb5db solid;
-    background-color: #a3cef1;
+#recordgrateful {
+    border: 2px solid #60a5fa;
+    background: linear-gradient(135deg, #a3cef1 0%, #7dd3fc 100%);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
-#savegrateful{
+#recordgrateful:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+#savegrateful {
     border: none;
-    background-color: #a7dca5;
+    background: linear-gradient(135deg, #a7dca5 0%, #86efac 100%);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+#savegrateful:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
 }
 
 #userGratefuls{
@@ -95,13 +129,22 @@
     margin-bottom: 14vh;
 }
 
-.gratefulItem{
+.gratefulItem {
     display: flex;
     flex-direction: column;
     background: white;
     width: 80vw;
-    border: #F0F2F6 0.8vw solid;
+    border: 2px solid #e5e7eb;
     gap: 1vh;
     padding: 4vw;
-    border-radius: 3.5vw;
+    border-radius: 4vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.gratefulItem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.06);
+    border-color: #d1d5db;
 }

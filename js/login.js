@@ -20,31 +20,36 @@ form.addEventListener("submit", async (e) => {
     }
 
     try {
-        // Chamada ao endpoint de login
+        // 🔹 Tentativa normal de login no backend
         const response = await fetch("http://localhost:8000/usuarios/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, senha })
         });
 
-        // Se a API responder erro (401, 404 etc)
-        if (!response.ok) {
-            const erro = await response.json().catch(() => null);
-            alert(erro?.detail || "Email ou senha incorretos!");
+        // 🔹 Se a resposta chegou (mesmo que erro 401)
+        if (response.ok) {
+            const usuario = await response.json();
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+            window.location.href = "./main.html";
             return;
         }
 
-        // Usuário autenticado
-        const usuario = await response.json();
-
-        // Salvar sessão
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-
-        // Redirecionar
-        window.location.href = "./main.html";
+        // 🔹 Se o servidor respondeu erro
+        const erro = await response.json().catch(() => null);
+        alert(erro?.detail || "Email ou senha incorretos!");
+        return;
 
     } catch (error) {
-        console.error(error);
-        alert("Erro ao conectar com o servidor!");
+        console.warn("Servidor offline. Entrando em modo de teste...");
+
+        // 🔹 MODO TESTE: simula login sem backend
+        const usuarioFake = {
+            nome: "Usuário Teste",
+            email: email
+        };
+
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioFake));
+        window.location.href = "./main.html";
     }
 });

@@ -1,4 +1,4 @@
-main{
+main {
     margin-bottom: 14vh;
 }
 
@@ -10,28 +10,84 @@ main{
     flex-direction: column;
     align-items: center;
     margin: 6vw 0 6vw;
-    background-color: #d1cb966b;
-    border: 3px #CAD1BE solid;
-    border-radius: 3vw;
-    padding: 5vw;
+    background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
+    border: 2px solid rgba(253, 230, 138, 0.8);
+    border-radius: 4.5vw;
+    padding: 5.5vw;
     gap: 3vw;
+    box-shadow: 
+        0 8px 24px rgba(251, 191, 36, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
 }
 
-#mostFrequentMood p{
-    font-weight: bold;
+#mostFrequentMood:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.06);
 }
 
-#mostFrequentMood span{
+#mostFrequentMood p {
+    font-weight: 600;
+    font-size: calc(0.9rem + 1vw);
+    color: #264770;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+#mostFrequentMood > div {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    margin-top: 1vw;
+}
+
+#mostMoodEmoji {
+    font-size: calc(1.5rem + 2vw);
+    display: inline-block;
+    animation: gentlePulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+#mostMood {
     text-transform: capitalize;
-    font-size: calc(0.8rem + 1.2vw);
+    font-size: calc(1rem + 1.5vw);
+    font-weight: 600;
+    color: #1e40af;
+    letter-spacing: 0.5px;
 }
 
 canvas {
-    background: white;
-    border: #F0F2F6 0.8vw solid;
-    border-radius: 2vw;
-    margin-bottom: 4vw;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+    border: 2px solid rgba(229, 231, 235, 0.8);
+    border-radius: 4vw;
+    margin-bottom: 5vw;
     width: 80vw;
-    max-width: 90vw;
-    padding: 2vw;
+    max-width: 80vw;
+    padding: 3vw;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 4px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+canvas:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.06);
+    border-color: #d1d5db;
+}
+
+canvas:last-child {
+    margin-bottom: 0;
 }
