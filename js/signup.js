@@ -25,7 +25,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         // 🔹 Chamada real para a API FastAPI
-        const response = await fetch("http://localhost:8000/usuarios/", {
+        const response = await fetch("http://dcext-iv-backend.onrender.com/usuarios/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, email, senha, tipo })
