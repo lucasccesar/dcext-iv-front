@@ -3,6 +3,10 @@ if (!usuarioLogado) {
     window.location.href = "./login.html";
 }
 
+if(usuarioLogado.tipo != "idoso"){
+    window.location.href = "./relative.html";
+}
+
 const closeSidebar = document.querySelector("#sidebar button")
 const sidebar = document.querySelector('#sidebar')
 const sidebarBackground = document.querySelector('#sidebarBackground')
